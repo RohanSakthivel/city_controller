@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://kit.fontawesome.com/391827d54c.js" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="styles1.css">
+  <title>Whatsapp Clone</title>
+</head>
+<body>
+  <div class="backgroun5d-green"></div>
+  <style>
+    /* CSS for message container */
+.message-container {
+  margin-bottom: 10px;
+}
+
+/* CSS for sender name */
+.sender-name {
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+/* CSS for message text */
+.message-text {
+  background-color: #dcf8c6;
+  padding: 10px;
+  border-radius: 10px;
+  display: inline-block;
+}
+
+/* CSS for timestamp */
+.timestamp {
+  font-size: 12px;
+  color: #999999;
+  margin-top: 5px;
+}
+
+/* CSS for different sender colors */
+.sender-1 .message-text {
+  background-color: #dcf8c6;
+}
+
+.sender-2 .message-text {
+  background-color: #ffffff;
+}
+
+.sender-3 .message-text {
+  background-color: #fce8b3;
+}
+
+  </style>
+
+
+  <div class="main-container">
+   
+      
+ 
+    
+  <div class="right-container">
+<!--header -->
+      <div class="header">
+        <div class="img-text">
+          <div class="user-img">
+            
+            <!-- this is photo of leo -->
+      
+        </div>
+        <h2>CENTRALIZED SMART CITY MONITARING SYSTEM</h2>  
+        <h4><span>Online</span></h4>
+        </div>
+        
+   
+        <div class="nav-icons">
+          <li><i class="fa-solid fa-magnifying-glass"></i></li>
+          <li><i class="fa-solid fa-ellipsis-vertical"></i></li>
+        </div>
+      </div>
+
+<!--chat-container -->
+      <div class="chat-container">
+        
+        <div class="message-box friend-message">
+          <div class="sender-section" id="sender1Section">
+            <h2>EMERGENCY MANAGEMENT</h2>
+            <ul id="sender1List"></ul>
+        </div>
+        </div>
+        <div class="message-box friend-message">
+          <div class="sender-section" id="sender2Section">
+            <h2>POLICE DEPARTMENT</h2>
+            <ul id="sender2List"></ul>
+        </div>
+        </div>
+        <div class="message-box friend-message">
+        <div class="sender-section" id="sender3Section">
+          <h2>National Road Safety</h2>
+          <ul id="sender3List"></ul>
+      </div>
+        </div>
+        <div class="message-box friend-message">
+          <div class="sender-section" id="sender3Section">
+            <h2>BLOOD DENOTATION</h2>
+            <ul id="sender4List"></ul>
+        </div>
+          </div>
+        
+        
+      </div>
+
+<!--input-bottom -->
+      <div class="chatbox-input">
+        <i class="fa-regular fa-face-grin"></i>
+        <i class="fa-sharp fa-solid fa-paperclip"></i>
+        
+        <i class="fa-solid fa-microphone">
+          
+        </i>
+      </div>
+    </div>
+
+  </div>
+  <script>
+    const ws = new WebSocket('ws://localhost:8080');
+
+    ws.onopen = function() {
+        console.log('Connected to messaging platform');
+    };
+
+    ws.onmessage = function(event) {
+        const parsedMessage = JSON.parse(event.data);
+        const sender = parsedMessage.sender;
+        const message = parsedMessage.text;
+
+        const messageElement = createMessageElement(message);
+
+        if (sender === 'Sender 1') {
+            document.getElementById('sender1List').appendChild(messageElement);
+        } else if (sender === 'Sender 2') {
+            document.getElementById('sender2List').appendChild(messageElement);
+        } else if (sender === 'Sender 3') {
+            document.getElementById('sender3List').appendChild(messageElement);
+        }else if (sender === 'Sender 4') {
+            document.getElementById('sender4List').appendChild(messageElement);
+        }
+    };
+
+    function createMessageElement(message) {
+        const li = document.createElement('li');
+        li.classList.add('message');
+        li.textContent = message;
+        return li;
+    }
+</script>
+  
+
+</body>
+</html>

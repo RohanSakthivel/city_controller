@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://kit.fontawesome.com/391827d54c.js" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="styles1.css">
+  <title>Whatsapp Clone</title>
+</head>
+<body>
+  <div class="backgroun5d-green"></div>
+
+
+  <div class="main-container">
+   
+      
+ 
+    
+  <div class="right-container">
+<!--header -->
+      <div class="header">
+        <div class="img-text">
+          <div class="user-img">
+            
+            <!-- this is photo of leo -->
+         
+        </div>
+           <h2>CENTRALIZED SMART CITY MONITARING SYSTEM</h2>
+          <h4><span>Online</span></h4>
+        </div>
+        <select id="senderSelect" style="cursor:pointer ;">
+          <option value="Sender 1">EMERGENCY MANAGEMENT</option>
+          <option value="Sender 2">POLICE DEPARTMENT</option>
+          <option value="Sender 3">National Road Safety</option>
+          <option value="Sender 4">BLOOD DENOTATION</option>
+      </select>
+     
+      <a href="admin.html">
+      <button>ADMIN</button>
+      </a>
+        <div class="nav-icons">
+          <li><i class="fa-solid fa-magnifying-glass"></i></li>
+          <li><i class="fa-solid fa-ellipsis-vertical"></i></li>
+        </div>
+      </div>
+
+<!--chat-container -->
+      <div class="chat-container">
+        <div class="message-box my-message">
+          <p>Administrative sanctions are any suspension, restriction, cancellation or revocation of an authorization (e.g. approvals, licences, permits, registrations, etc.) for non-compliance with requirements.<br><span>07:43</span></p>
+        </div>
+        <div id="thankYouMessage" class="message-box friend-message">
+          <p >I believe you do too!<br><span>07:45</span></p>
+        </div>
+        
+        <div class="message-box my-message">
+          <ul id="sender1List"></ul>
+        </div>
+      </div>
+
+<!--input-bottom -->
+      <div class="chatbox-input">
+        <i class="fa-regular fa-face-grin"></i>
+        <i class="fa-sharp fa-solid fa-paperclip"></i>
+        
+        <textarea id="messageInput" placeholder="Enter your message"></textarea>
+        <i class="fa-solid fa-microphone">
+          <button onclick="sendMessage()">Send</button>
+        </i>
+      </div>
+    </div>
+
+  </div>
+  <script>
+    const ws = new WebSocket('ws://localhost:8080');
+
+    ws.onopen = function() {
+        console.log('Connected to messaging platform');
+    };
+
+    ws.onmessage = function(event) {
+        const parsedMessage = JSON.parse(event.data);
+
+        // Display the received message on the website
+        const messageElement = document.createElement('p');
+        messageElement.textContent = parsedMessage.sender + ': ' + parsedMessage.text;
+        document.body.appendChild(messageElement);
+    };
+
+    function sendMessage1() {
+        
+        const messageInput = document.getElementById('messageInput');
+        const senderSelect = document.getElementById('senderSelect');
+         const message = {
+            sender: senderSelect.value,
+            text: messageInput.value
+        };
+
+        ws.send(JSON.stringify(message));
+        messageInput.value = '';
+        if (messageInput.trim() !== '') {
+            // Send the message here
+            // ...
+
+            // Show the thank you message
+            const thankYouMessage = document.getElementById('thankYouMessage');
+            thankYouMessage.style.display = 'block';
+
+            // Reset the input field
+            document.getElementById('messageInput').value = '';
+        }
+    }
+    function messageaging() { 
+      const messageInput = document.getElementById('messageInput').value;
+        if (messageInput.trim() !== '') {
+            // Send the message here
+            // ...
+
+            // Show the thank you message
+            const thankYouMessage = document.getElementById('thankYouMessage');
+            thankYouMessage.style.display = 'block';
+
+            // Reset the input field
+            document.getElementById('messageInput').value = '';
+    }
+  }
+function sendMessage(){
+  sendMessage1();
+  messageaging();
+}
+</script>
+
+</body>
+</html>

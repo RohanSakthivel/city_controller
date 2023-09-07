@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>JOB SITE</title>
+  <link rel="stylesheet" type="text/css" href="style1s.css">
+</head>
+<body>
+  <header>
+    <nav>
+        <h3 style="color: white;">CENTRALIZED SMART CITY MONITARING SYSTEM</h3>
+        <nav>
+            <ul>
+                <li><a href="">HOME</a></li>
+                <li><a href="job-lister.html">admin</a></li>
+                <li><a href="">ABOUT</a></li>
+            </ul>
+        </nav>
+    </nav>
+  </header>
+
+  <div class="container">
+    <div class="sidebar" >
+      <div class="select select--multiple">
+        <H3 style="color: aliceblue;">COMPANY NAME SELECT</H3>
+        <select id="senderSelect" style="width: 100px;">
+          <option value="Sender 1">axmi Machine Works Limited</option>
+          <option value="Sender 2">CRI Pumps</option>
+          <option value="Sender 3">Bannari Amman Group</option>
+          <option value="Sender 4">Ampo Valves India</option>
+          <option value="Sender 5">ELGI Equipments</option>
+          <option value="Sender 6">Pricol Limited</option>
+          <option value="Sender 7">KPR Mill</option>
+          <option value="Sender 8">LG Balakrishnan Bros</option>
+          <option value="Sender 9">Freshworks</option>
+          <option value="Sender 10">HashTag Technologies</option>
+          <option value="Sender 11">Hewlett Packard Enterprise</option>
+          <option value="Sender 12">TataConsultancyServices(TCS)</option>
+          <option value="Sender 13">Wipro</option>
+          <option value="Sender 14">Cognizant</option>
+      </select>
+        <span class="focus"></span>
+      </div>
+        </div>
+  <div class="rrrt">
+    <div class="content">
+      <h3>WELCOME TO MY CENTRALIZED SMART CITY MONITARING SYSTEM</h3>
+      <p>THIS IS A SAMPLE CENTRALIZED SMART CITY MONITARING SYSTEM WEBSITE.</p>
+      <div class="div1" id="sender33-1"><h5> axmi Machine Works Limited.</h5></div>
+            <div class="div1" id="sender33-2"><h5>  CRI Pumps.</h5></div>
+              <div class="div1" id="sender33-3"><h5>  Bannari Amman Group.</h5></div>
+                <div class="div1" id="sender33-4"><h5> Ampo Valves India.</h5></div>
+                  <div class="div1" id="sender33-5"><h5> ELGI Equipments.</h5></div>
+                    <div class="div1" id="sender33-6"><h5> Pricol Limited.</h5></div>
+                      <div class="div1" id="sender33-7"><h5> KPR Mill.</h5></div>
+                        <div class="div1" id="sender33-8"><h5>  LG Balakrishnan Bros</h5></div>
+                        <div class="div1" id="sender33-9"><h5>  Freshworks</h5></div>
+                        <div class="div1" id="sender33-10"><h5>  HashTag Technologies</h5></div>
+                        <div class="div1" id="sender33-11"><h5> Hewlett Packard Enterprise</h5></div>
+                          <div class="div1" id="sender33-12"><h5>  Tata Consultancy Services (TCS)</h5></div>
+                            <div class="div1" id="sender33-13"><h5>  Wipro</h5></div>
+                              <div class="div1" id="sender33-14"><h5>  Cognizant</h5></option>
+  
+  </div>                          </div>
+    </div>
+    <div class="content1">
+      <div class="ff" onclick="messageaging()"> <h3>JOB NAME</h3>
+        <textarea id="messageInput" placeholder="Enter your message"></textarea>
+        <h3>NAME</h3>
+        <textarea id="message" placeholder="Enter your message"></textarea>
+        <h3>RESUME</h3>
+        <input id="message1" type="file" placeholder="Enter your message"></textarea>
+        <h3>EMAIL ID</h3>
+        <input type="text" id="locationInput" placeholder="Enter a location">
+        <h3>PHONE number</h3>
+        <input type="phone" id="moblienumber" placeholder="Enter a number">
+       
+        <button onclick="sendMessage()" style="height: 40px; width: 150px;">Send</button>
+        </div>
+    </div>
+   
+  </div>
+</div>
+  <footer>
+    <p>&copy; 2023 My CSCMS. All rights reserved.</p>
+  </footer>
+  <script>
+    const ws = new WebSocket('ws://localhost:8080');
+
+ws.onopen = function() {
+    console.log('Connected to messaging platform');
+};
+
+ws.onmessage = function(event) {
+    const parsedMessage = JSON.parse(event.data);
+
+    // Display the received message on the website
+    const messageElement = document.createElement('p');
+    messageElement.textContent = parsedMessage.sender + ': ' + parsedMessage.text;
+    document.body.appendChild(messageElement);
+};
+
+function sendMessage1() {
+  
+
+  const messageInput1 = document.getElementById('message');
+    const messageInput = document.getElementById('messageInput');
+       const fileinput =   document.getElementById('message1');
+
+    const location5 = document.getElementById('locationInput');
+    const number2 = document.getElementById('moblienumber');
+
+    
+   
+   
+    const senderSelect = document.getElementById('senderSelect');
+    const message = {
+        sender: senderSelect.value,
+        text: messageInput.value,
+        text1: messageInput1.value,
+        File:fileinput.value,
+        loc:location5.value,
+        num:number2.value
+  
+    };
+
+    ws.send(JSON.stringify(message));
+    messageInput.value = '';
+    if (messageInput.trim() !== '') {
+        // Send the message here
+        // ...
+
+        // Show the thank you message
+        const thankYouMessage = document.getElementById('thankYouMessage');
+        thankYouMessage.style.display = 'block';
+
+        // Reset the input field
+        document.getElementById('messageInput').value = '';
+    }
+}
+
+function sendMessage(){
+sendMessage1();
+
+}
+  </script>
+</body>
+</html>

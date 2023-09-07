@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width,initial-scale=1.0">
+        <link rel="stylesheet" href="style.css">
+        <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    </head>
+    <body>
+        <div class="container-sm">
+        <link rel="stylesheet" href=".assit/css/bootstrap.min.css">
+                <div class="container1">
+            <div class="navbar">
+                <h3 style="color: white;">CENTRALIZED SMART CITY MONITARING SYSTEM</h3>
+                <nav>
+                    <ul>
+                        <li><a href="">HOME</a></li>
+                        <li><a href="https://www.tnstc.in/TNSTCOnline/jqreq.do?hiddenAction=Login">BOOKING</a></li>
+                        <li><a href="">ABOUT</a></li>
+                    </ul>
+                </nav>
+                <img src="menu.png" class="menu-icon">
+            </div>
+            <div class="row">
+                <div class="col">
+                    <div class="card">
+                        <div class="bg">
+                            <div class="message-box friend-message">
+                                <div class="sender-section" id="sender3Section">
+                                  <h2>BLOOD DENOTATION</h2>
+                                  <ul id="sender4List"></ul>
+                              </div>
+                                </div>
+                                  
+                        </div>
+                        <div class="blob"></div>
+                      </div>
+               <a href="message.html"><button type="button">USER YOU HAVE ANY PROBLEM PLEASE GIVE REPORT</button> </a>              
+            </div>
+                <div class="col-sm">
+                 <a href="https://rohansakthivel.github.io/bus_monitoring/">   
+                <div class="card1">
+                 <a href="https://rohansakthivel.github.io/bus_monitoring/"><h5>TRANSPORT</h5></a>
+                 <p></p>
+                </div></a><div class="card2">
+                    <h5>ROAD DEPARTMENT</h5></a>
+                    <p></p>
+                   </div><div class="card3">
+                    <h5>EMERGENCY MANAGEMENT</h5>
+                    <p></p>
+                   </div>
+                   <a href="job.html"><div class="card4">
+                    <h5>JOBS</h5>
+                    <p></p>
+                   </div>
+                </a><div class="card5">
+                    <h5>FIRE SAFETY</h5>
+                    <p></p>
+                   </div>
+                   <div class="card6">
+                    <h5>HEALTCARE</h5>
+                    <p></p>
+                   </div>
+                   <div class="card7">
+                    <h5>PWD</h5>
+                    <p>Public work department</p>
+                   </div>
+                   <div class="card8">
+                    <h5>POLICE DEPARTMENT</h5>
+                    <p></p>
+                   </div>
+                   <div class="card9">
+                    <h5>RESOURCE MANAGEMENT</h5>
+                    <p></p>
+                   </div>
+                    
+                </div>
+
+            </div>
+        </div>
+    <a href="C:\Users\Victus\Documents\neww project\page2">hi</a>
+</div>  
+<script>
+    const ws = new WebSocket('ws://localhost:8080');
+
+ws.onopen = function() {
+    console.log('Connected to messaging platform');
+};
+
+ws.onmessage = function(event) {
+    const parsedMessage = JSON.parse(event.data);
+    const sender = parsedMessage.sender;
+    const message = parsedMessage.text;
+
+    const messageElement = createMessageElement(message);
+    if (sender === 'Sender 4') {
+        document.getElementById('sender4List').appendChild(messageElement);
+    }
+};
+
+function createMessageElement(message) {
+    const li = document.createElement('li');
+    li.classList.add('message');
+    li.textContent = message;
+    return li;
+}
+</script>  
+</body>
+</html>

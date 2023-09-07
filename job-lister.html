@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://kit.fontawesome.com/391827d54c.js" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="styles1.css">
+  <title>Whatsapp Clone</title>
+</head>
+<body>
+  <div class="backgroun5d-green"></div>
+  <style>
+    /* CSS for message container */
+.message-container {
+  margin-bottom: 10px;
+}
+
+/* CSS for sender name */
+.sender-name {
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+/* CSS for message text */
+.message-text {
+  background-color: #dcf8c6;
+  padding: 10px;
+  border-radius: 10px;
+  display: inline-block;
+}
+
+/* CSS for timestamp */
+.timestamp {
+  font-size: 12px;
+  color: #999999;
+  margin-top: 5px;
+}
+
+/* CSS for different sender colors */
+.sender-1 .message-text {
+  background-color: #dcf8c6;
+}
+
+.sender-2 .message-text {
+  background-color: #ffffff;
+}
+
+.sender-3 .message-text {
+  background-color: #fce8b3;
+}
+
+  </style>
+
+
+  <div class="main-container">
+   
+      
+ 
+    
+  <div class="right-container">
+<!--header -->
+      <div class="header">
+        <div class="img-text">
+          <div class="user-img">
+            
+            <!-- this is photo of leo -->
+      
+        </div>
+        <h2>CENTRALIZED SMART CITY MONITARING SYSTEM</h2>  
+        <h4><span>Online</span></h4>
+        </div>
+        
+   
+        <div class="nav-icons">
+          <li><i class="fa-solid fa-magnifying-glass"></i></li>
+          <li><i class="fa-solid fa-ellipsis-vertical"></i></li>
+        </div>
+      </div>
+   <h1>THE JOB OF COMPANY</h1>
+<!--chat-container -->
+      <div class="chat-container">
+        
+        <div class="message-box friend-message">
+          <div class="sender-section" id="sender1Section">
+            <h2>axmi Machine Works Limited</h2>
+        <ul id="sender1List"></ul>
+        </div>
+        </div>
+        <div class="message-box friend-message">
+          <div class="sender-section" id="sender2Section">
+            <h2>CRI Pumps</h2>
+            <ul id="sender2List"></ul>
+        </div>
+        </div>
+        <div class="message-box friend-message">
+        <div class="sender-section" id="sender3Section">
+          <h2>Bannari Amman Group</h2>
+        <ul id="sender3List"></ul>
+      </div>
+        </div>
+        <div class="message-box friend-message">
+          <div class="sender-section" id="sender3Section">
+            <h2>Ampo Valves India</h2>
+        <ul id="sender4List"></ul>
+        </div>
+          </div>
+          <div class="message-box friend-message">
+            <div class="sender-section" id="sender3Section">
+              <h2>ELGI Equipments</h2>
+              <ul id="sender5List"></ul>
+          </div>
+            </div>
+            <div class="message-box friend-message">
+              <div class="sender-section" id="sender3Section">
+                <h2>Pricol Limited</h2>
+                <ul id="sender6List"></ul>
+            </div>
+              </div>
+              <div class="message-box friend-message">
+                <div class="sender-section" id="sender3Section">
+                  <h2>KPR Mill</h2>
+        <ul id="sender7List"></ul>
+              </div>
+                </div>
+                <div class="message-box friend-message">
+                  <div class="sender-section" id="sender3Section">
+                    <h2>LG Balakrishnan Bros</h2>
+        <ul id="sender8List"></ul>
+                </div>
+                  </div>
+                  <div class="message-box friend-message">
+                    <div class="sender-section" id="sender3Section">
+                      <h2>Freshworks</h2>
+                      <ul id="sender9List"></ul>
+                  </div>
+                    </div>
+                    <div class="message-box friend-message">
+                      <div class="sender-section" id="sender3Section">
+                        <h2>HashTag Technologies</h2>
+                        <ul id="sender10List"></ul>
+                    </div>
+                      </div>
+                      <div class="message-box friend-message">
+                        <div class="sender-section" id="sender3Section">
+                          <h2>Hewlett Packard Enterprise</h2>
+                          <ul id="sender11List"></ul>
+                      </div>
+                        </div>
+                        <div class="message-box friend-message">
+                          <div class="sender-section" id="sender3Section">
+                            <h2>Tata Consultancy Services (TCS)</h2>
+                            <ul id="sender12List"></ul>
+                        </div>
+                          </div>
+                          <div class="message-box friend-message">
+                            <div class="sender-section" id="sender3Section">
+                              <h2>Wipro</h2>
+    <ul id="sender13List"></ul>
+                          </div>
+                            </div>
+                            <div class="message-box friend-message">
+                              <div class="sender-section" id="sender3Section">
+                                <h2>Cognizant</h2>
+    <ul id="sender14List"></ul>
+                            </div>
+                              </div>
+                                                                                
+        
+      </div>
+
+<!--input-bottom -->
+      <div class="chatbox-input">
+        <i class="fa-regular fa-face-grin"></i>
+        <i class="fa-sharp fa-solid fa-paperclip"></i>
+        
+        <i class="fa-solid fa-microphone">
+          
+        </i>
+      </div>
+    </div>
+
+  </div>
+  <script>
+     const ws = new WebSocket('ws://localhost:8080');
+
+ws.onopen = function() {
+    console.log('Connected to messaging platform');
+};
+
+ws.onmessage = function(event) {
+    const parsedMessage = JSON.parse(event.data);
+    const sender = parsedMessage.sender;
+    const message = parsedMessage.text;
+    const message1 = parsedMessage.text1;
+    const image1 = parsedMessage.File;
+    const loca = parsedMessage.loc;
+    const numbe = parsedMessage.num;
+    
+
+
+    const messageElement = createMessageElement(message);
+    const messageElement1 = createMessageElement(message1);
+    const file23 = createMessageElement(image1);
+    const locati = createMessageElement(loca);
+    const number = createMessageElement(numbe);
+    
+    
+    if (sender === 'Sender 1') {
+        document.getElementById('sender1List').appendChild(messageElement);
+        document.getElementById('sender1List').appendChild(messageElement1);
+        document.getElementById('sender1List').appendChild(file23);
+        document.getElementById('sender1List').appendChild(locati);
+        document.getElementById('sender1List').appendChild(number);
+       
+    } else if (sender === 'Sender 2') {
+    
+        document.getElementById('sender2List').appendChild(messageElement);
+        document.getElementById('sender2List').appendChild(messageElement1);
+        document.getElementById('sender2List').appendChild(file23);
+        document.getElementById('sender2List').appendChild(locati);
+        document.getElementById('sender2List').appendChild(number);
+       
+    } else if (sender === 'Sender 3') {
+        document.getElementById('sender3List').appendChild(messageElement);
+        document.getElementById('sender3List').appendChild(messageElement1);
+        document.getElementById('sender3List').appendChild(file23);
+        document.getElementById('sender3List').appendChild(locati);
+        document.getElementById('sender3List').appendChild(number);
+       
+    }
+    else if (sender === 'Sender 4') {
+        document.getElementById('sender4List').appendChild(messageElement);
+        document.getElementById('sender4List').appendChild(messageElement1);
+        document.getElementById('sender4List').appendChild(file23);
+        document.getElementById('sender4List').appendChild(locati);
+        document.getElementById('sender4List').appendChild(number);
+    } else if (sender === 'Sender 5') {
+        document.getElementById('sender5List').appendChild(messageElement);
+        document.getElementById('sender5List').appendChild(messageElement1);
+        document.getElementById('sender5List').appendChild(file23);
+        document.getElementById('sender5List').appendChild(locati);
+        document.getElementById('sender5List').appendChild(number);
+    }
+    else if (sender === 'Sender 6') {
+        document.getElementById('sender6List').appendChild(messageElement);
+        document.getElementById('sender6List').appendChild(messageElement1);
+        document.getElementById('sender6List').appendChild(file23);
+        document.getElementById('sender6List').appendChild(locati);
+        document.getElementById('sender6List').appendChild(number);
+    } else if (sender === 'Sender 7') {
+        document.getElementById('sender7List').appendChild(messageElement);
+        document.getElementById('sender7List').appendChild(messageElement1);
+        document.getElementById('sender7List').appendChild(file23);
+        document.getElementById('sender7List').appendChild(locati);
+        document.getElementById('sender7List').appendChild(number);
+    }
+    else if (sender === 'Sender 8') {
+        document.getElementById('sender8List').appendChild(messageElement);
+        document.getElementById('sender8List').appendChild(messageElement1);
+        document.getElementById('sender8List').appendChild(file23);
+        document.getElementById('sender8List').appendChild(locati);
+        document.getElementById('sender8List').appendChild(number);
+    } else if (sender === 'Sender 9') {
+        document.getElementById('sender9List').appendChild(messageElement);
+        document.getElementById('sender9List').appendChild(messageElement1);
+        document.getElementById('sender9List').appendChild(file23);
+        document.getElementById('sender9List').appendChild(locati);
+        document.getElementById('sender9List').appendChild(number);
+    }
+    else if (sender === 'Sender 10') {
+        document.getElementById('sender10List').appendChild(messageElement);
+        document.getElementById('sender10List').appendChild(messageElement1);
+        document.getElementById('sender10List').appendChild(file23);
+        document.getElementById('sender10List').appendChild(locati);
+        document.getElementById('sender10List').appendChild(number);
+    } else if (sender === 'Sender 11') {
+        document.getElementById('sender11List').appendChild(messageElement);
+        document.getElementById('sender11List').appendChild(messageElement1);
+        document.getElementById('sender11List').appendChild(file23);
+        document.getElementById('sender11List').appendChild(locati);
+        document.getElementById('sender11List').appendChild(number);
+    }
+    else if (sender === 'Sender 12') {
+        document.getElementById('sender12List').appendChild(messageElement);
+        document.getElementById('sender12List').appendChild(messageElement1);
+        document.getElementById('sender12List').appendChild(file23);
+        document.getElementById('sender12List').appendChild(locati);
+        document.getElementById('sender12List').appendChild(number);
+    }
+    else if (sender === 'Sender 13') {
+        document.getElementById('sender13List').appendChild(messageElement);
+        document.getElementById('sender13List').appendChild(messageElement1);
+        document.getElementById('sender13List').appendChild(file23);
+        document.getElementById('sender13List').appendChild(locati);
+        document.getElementById('sender13List').appendChild(number);
+    }
+    else if (sender === 'Sender 14') {
+        document.getElementById('sender14List').appendChild(messageElement);
+        document.getElementById('sender14List').appendChild(messageElement1);
+        document.getElementById('sender14List').appendChild(file23);
+        document.getElementById('sender14List').appendChild(locati);
+        document.getElementById('sender14List').appendChild(number);
+    }
+};
+
+function createMessageElement(message) {
+    const li = document.createElement('li');
+    li.classList.add('message');
+    li.textContent = message;
+    return li;
+}
+</script>
+  
+
+</body>
+</html>
